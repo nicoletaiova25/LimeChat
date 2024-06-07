@@ -1,0 +1,36 @@
+﻿@model LimeChat.Models.Group
+@{
+    ViewBag.Title = "Editare grup";
+}
+<h2 class="text-center mt-5">Editare grup</h2>
+<br />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "Groups",
+            method: FormMethod.Post,
+            routeValues: new { id = Model.GroupId }))
+            {
+                /* @Html.HiddenFor(m => m.Id)  */
+
+
+                @Html.Label("GroupName", "Nume Grup")
+                <br />
+                @Html.Editor("GroupName", new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(p => p.GroupName, null, new { @class = "text-danger" })
+                <br />
+                @Html.Label("Description", "Descriere grup")
+                <br />
+                @Html.Editor("Description", new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(p => p.Description, null, new { @class = "text-danger" })
+                <br />
+                <br />
+
+                <button class="btn btn-sm culoaresus" type="submit">Modifica grup</button>
+
+            }
+        </div>
+    </div>
+</div>

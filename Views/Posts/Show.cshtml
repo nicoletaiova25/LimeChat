@@ -1,0 +1,169 @@
+﻿@model LimeChat.Models.Post
+@{
+    ViewBag.Title = "Afisare postare";
+}
+@* Afisarea unei postari *@
+
+
+<br />
+
+<div class="card rounded-3 border-0 " style="background: linear-gradient(45deg, rgba(255, 107, 107, 0.5), rgba(255, 182, 185, 0.5));">
+
+    @Html.Partial("PostInfo", Model)
+
+    <div class="container text-center ">
+        <div class="col scroll inalt grid-line1 float-start w-100 position-static d-block p-4">
+
+
+            <br />
+            <br />
+            <div class="post-box row ">
+                <div class="card-text text-dark">@Model.PostContent</div>
+                <br />
+            </div>
+            <br />
+
+
+
+            <div class="row position-relative d-block">
+
+
+                <div class="post-box position-relative d-block bottom-0 start-0 ">
+
+                    <form method="post" action="/Posts/Show/@Model.PostId">
+
+
+                        <div class="card-body">
+
+                            <input type="hidden" name="PostId" value="@Model.PostId" />
+
+                            <label>Continut comentariu</label>
+                            <br />
+
+                            <textarea class="form-control" name="CommentContent"></textarea>
+
+                            @Html.ValidationMessage("CommentContent", "", new { @class = "text-danger" })
+
+                            <br /><br />
+
+                            <button class="btn btn-light btn-pink" type="submit">Adauga comentariul</button>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col inalt scroll grid-line2 w-100 ">
+            @foreach (var comm in Model.Comments)
+            {
+
+                <div class="card-body comment-box">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="comment-content">
+
+                                <p>@comm.CommentContent</p>
+                                <small>@comm.CommentDate</small>
+                                <strong><i class="bi bi-person"></i>@comm.User.UserName</strong>
+
+                            </div>
+                            <br>
+
+
+                            @if (comm.UserId == ViewBag.UserCurent || ViewBag.EsteAdmin)
+                            {
+
+                                <div class="d-flex justify-content-center">
+
+                                    <div>
+
+                                        <a class="btn btn-pink" href="/Comments/Edit/@comm.CommentId"><i class="bi bi-pencil-square"></i></a>
+
+                                    </div>
+
+                                    <div>
+
+                                        <form method="post" action="/Comments/Delete/@comm.CommentId">
+
+                                            <button class="btn btn-pink" type="submit"><i class="bi bi-trash"></i></button>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            }
+
+                            <br />
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+
+
+</div>
+
+@if (ViewBag.AfisareButoane == true && Model.UserId == ViewBag.UserCurent || ViewBag.EsteAdmin)
+{
+    <div class="d-flex bg-pink flex-row justify-content-between p-3 border-1 border-top rounded-bottom">
+        <a class="btn btn-light btn-pink" href="/Posts/Edit/@Model.PostId">Editeaza postare</a>
+        <form method="post" action="/Posts/Delete/@Model.PostId">
+            <button class="btn btn-light btn-pink bi bi-trash3" type="submit"></button>
+        </form>
+    </div>
+}
+
+<style>
+    .btn-pink {
+        background-color: pink;
+        border-color: hotpink;
+        color: black;
+    }
+
+    .bottom-0 {
+        bottom: 0;
+    }
+
+    .start-0 {
+        start: 0;
+    }
+
+    .post-box {
+        border: 3px solid deeppink;
+        padding: 20px;
+        margin-bottom: 0;
+    }
+
+    .comment-box {
+        border: 3px solid deeppink;
+        padding: 10px;
+        margin-bottom: 0;
+    }
+
+    body {
+        background: url('/images/template.png') no-repeat center center fixed;
+        background-size: cover;
+        color: black; /* Adjust text color for visibility */
+    }
+
+
+    .video-bg {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        max-width: 300%;
+        max-height: 300%;
+        z-index: -1;
+        opacity: 0; /* Adjust the opacity as needed */
+    }
+</style>

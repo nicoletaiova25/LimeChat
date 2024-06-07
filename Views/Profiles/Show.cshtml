@@ -1,0 +1,328 @@
+﻿@model LimeChat.Models.Profile
+@{
+    ViewBag.Title = "Afisare profil";
+}
+
+<style>
+    /* Background animation */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ff77a9, #ff3d7f);
+        z-index: -1;
+        opacity: 0.8;
+        animation: gradientAnimation 15s ease infinite alternate;
+        background: url('/images/template.png') no-repeat center center fixed;
+        background-size: cover;
+        color: black;
+    }
+
+    .container-card {
+        display: grid;
+        grid-template-columns: 2fr auto;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    /* Card styles */
+    .card {
+        background-color: pink;
+        opacity: 0.9;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Button styles */
+    .btn {
+        background-color: hotpink;
+        color: #ffffff;
+        border: 2px solid pink;
+        padding: 10px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .btn:hover {
+            background-color: #ff77a9;
+        }
+
+    /* Badge styles */
+    .badge {
+        background-color: pink;
+        color: #ffffff;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .cont {
+        color: deeppink;
+        font-size: 2em;
+    }
+
+    /* Link styles */
+    a {
+        color: deeppink;
+        text-decoration: none;
+        transition: color 0.3s;
+        font-size: 16px;
+    }
+
+        a:hover {
+            color: #ff77a9;
+        }
+
+    /* Additional styles */
+    .video-bg {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        max-width: 300%;
+        max-height: 300%;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    .cards {
+        background-color: pink;
+        opacity: 0.9;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        width: 100%;
+    }
+
+    h2 {
+        display: block;
+    }
+
+    .badge-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .card5 {
+        background-color: hotpink;
+        border-radius: 20px;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    /* Flexbox for buttons */
+    .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .additional-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Card container styling */
+    .cards {
+        background-color: pink;
+        opacity: 0.9;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        width: 100%;
+    }
+
+    .container2 {
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .card-custom {
+        background-color: hotpink;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    .card-header3 {
+        background-color: #e0e7ff;
+        border-bottom: 1px solid #ccc;
+        padding: 10px 20px;
+        border-radius: 10px 10px 0 0;
+        width: 200px;
+    }
+
+    .user-link {
+        color: hotpink;
+        font-weight: bold;
+    }
+
+        .user-link:hover {
+            color: dee;
+            text-decoration: underline;
+        }
+
+    .post-date {
+        color: #718096;
+        font-size: 0.9em;
+    }
+
+    .card-body {
+        background-color:lightpink;
+        padding: 20px;
+    }
+
+    .card-text {
+        margin-bottom: 20px;
+        color: #4a5568;
+    }
+
+    .btn-custom {
+        background-color: #ff77a9;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+        .btn-custom:hover {
+            background-color: #ff3d7f;
+        }
+
+    .cards3{
+        background-color: pink;
+        opacity: 0.8;
+    }
+
+    
+</style>
+
+
+<div class="add">
+    @if (ViewBag.buton == true)
+    {
+        <a class="culoarebuton7" href="/Profiles/AddFriend/@Model.UserId"><i class="bi bi-person-plus-fill"></i></a>
+    }
+</div>
+
+
+<div class="container-card">
+    <div class="badge">
+        <div class="card-header4 d-block justify-content-center">
+            <div class="d-block fontbun1 culoarebuna"><h2>@Model.ProfileName</h2></div>
+            <div class="fontbun1 culoarebuna card-subtitle d-block mb-2 text-muted center-block"><h6>@Model.ProfileUsername</h6></div>
+        </div>
+
+        @if (ViewBag.Public == true || ViewBag.prieteni == true || Model.UserId == ViewBag.UserCurent)
+        {
+            <div class="card5 d-flex">
+                <span class="badge2 badge-pill fontbun1 justify-content-start d-flex">Despre mine</span><br />
+                <div class="card-body">
+                    <blockquote class="blockquote fontbun1 mb-0">
+                        <p class="fontbun1">@Model.ProfileBio</p>
+                    </blockquote>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="badge">
+        @if (ViewBag.AfisareButoane == true && Model.UserId == ViewBag.UserCurent || ViewBag.EsteAdmin)
+        {
+            <div class="button-container p-3 border-1 border-top">
+                <a class="btn justify-content-center text-light m-3" href="/Profiles/Edit/@Model.ProfileId"><i class="bi bi-pencil-fill"></i></a>
+                <form method="post" action="/Profiles/Delete/@Model.ProfileId">
+                    <button class="btn justify-content-center text-light m-3" type="submit"><i class="bi bi-trash3"></i></button>
+                </form>
+
+                @if (Model.UserId == ViewBag.UserCurent)
+                {
+                    <div class="additional-buttons p-3 border-1 border-top">
+                        <a class="btn justify-content-center text-light m-3" href="/Profiles/All/@Model.UserId">Afiseaza prieteni</a>
+                        <a class="btn justify-content-center text-light m-3" href="/Profiles/Request">Afiseaza cereri</a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+
+<div class="cards">
+    <div class="card2">
+        <div class="cards3">
+            <div class="jumbotron d-flex justify-content-end flex-row mt-4" style="color:deeppink">
+                <div class="cont">
+                    <a href="/Posts/New"><i class="bi bi-plus-circle-fill"></i></a>
+                </div>
+            </div>
+            @foreach (LimeChat.Models.Post post in ViewBag.Posts)
+            {
+                @if (post.GroupId == null)
+                {
+                    <div class="container2 d-flex justify-content-center flex-row mt-3 fontbun1">
+                        <div class="text-bg-blue mb-3 card-custom">
+                            <div class="card-header3 row rounded-2 align-items-center">
+                                <a class="fw-bold col-md-8 text-decoration-none user-link" href="/Profiles/Show2/@post.UserId">@post.User.UserName</a>
+                                <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div> <div class="container d-inline">
+                                </div>
+                                
+                                <span class="col-md-4 text-end post-date">@post.PostDate.ToLongDateString()</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">@post.PostContent</p>
+                                <a class="btn btn-custom d-flex justify-content-center text-light" href="/Posts/Show/@post.PostId">Afisare postare</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@if (ViewBag.Public == false && ViewBag.prieteni == false && Model.UserId != ViewBag.UserCurent)
+{
+    <h2 class="fontbun1 mb-5 mt-5 ml-sm-5 culoarebuna">Acest utilizator are contul privat!</h2>
+}
+
+</div>

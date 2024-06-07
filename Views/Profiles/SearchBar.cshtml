@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "SearchBar";
+}
+
+<style>
+    body {
+        background: url('/images/template.png') no-repeat center center fixed;
+        background-size: cover;
+        color: white; /* Adjust text color for visibility */
+    }
+
+    .video-bg {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        max-width: 300%;
+        max-height: 300%;
+        z-index: -1;
+        opacity: 0; /* Adjust the opacity as needed */
+    }
+    /* Alte stiluri rămân neschimbate */
+
+    /* Stilizare pentru bara de căutare */
+    .input-group.mb-3 {
+        max-width: 500px; /* Limităm lățimea pentru a nu se întinde prea mult pe ecran mare */
+        margin: 0 auto; /* Centrăm bara de căutare */
+    }
+
+        .input-group.mb-3 .form-control {
+            border-top-right-radius: 0; /* Rotunjim doar colțul din dreapta sus */
+            border-bottom-right-radius: 0;
+        }
+
+        .input-group.mb-3 .culoarebuton4 {
+            border-top-left-radius: 0; /* Rotunjim doar colțul din stânga sus */
+            border-bottom-left-radius: 0;
+            background-color: hotpink; /* Culoare verde pentru butonul de căutare */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .input-group.mb-3 .culoarebuton4:hover {
+                background-color: deeppink; /* Culoare mai închisă la hover */
+            }
+
+    /* Stilizare pentru cardurile de profil */
+    .card {
+        background-color: #f5f5f5; /* Fundal gri deschis */
+        border-radius: 10px;
+        margin: 20px auto; /* Centrăm cardurile */
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Umbră ușoară */
+        max-width: 500px; /* Limităm lățimea cardului */
+    }
+
+        .card .card-header9 {
+            text-align: center; /* Aliniere centrată pentru antet */
+        }
+
+            .card .card-header9 a {
+                color: black; /* Culoare verde pentru link */
+                font-weight: bold;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                .card .card-header9 a:hover {
+                    color: hotpink; /* Culoare mai închisă la hover */
+                }
+
+        .card .card-subtitle {
+            text-align: center; /* Aliniere centrată pentru subtitlu */
+        }
+</style>
+
+
+<h3 class="fontbun1 culoarebuna text-center mt-5">Introdu numele sau username-ul persoanei pe care vrei sa o cauti!</h3>
+
+<form method="GET">
+    <div class="input-group mb-3 fontbun1">
+        <input type="text" class="form-control" placeholder="Nume sau username" name="search" value="@ViewBag.SearchString">
+        <button class="culoarebuton4 border-0" type="submit">Search</button>
+    </div>
+</form>
+@if (ViewBag.cautare == true)
+{
+    @foreach (var profil in ViewBag.profile)
+    {
+        <div class="card">
+
+            <div class="card-header9 flex-column">
+                <a class="culoarebuton4 text-decoration-none culoarebuna fontbun1" href="/Profiles/Show/@profil.ProfileId">Nume profil: @profil.ProfileName</a>
+                <br>
+                <br>
+                <div class="card-subtitle col d-block mb-2 text-muted center-block fontbun1"><h6>Username: @profil.ProfileUsername</h6></div>
+            </div>
+
+
+        </div>
+    }
+}

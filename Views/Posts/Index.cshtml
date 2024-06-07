@@ -1,0 +1,276 @@
+﻿@model LimeChat.Models.Post
+
+@{
+    ViewBag.Title = "Afisare postari.";
+}
+
+<style>
+    body {
+        background: url('/images/template.png') no-repeat center center fixed;
+        background-size: cover;
+        color: white; /* Adjust text color for visibility */
+    }
+
+    .fontbun1 {
+        color: black;
+    }
+
+    .text-bg-blue {
+        background-color: #fff0f5;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header3 {
+        background-color: #ff69b4;
+        color: white;
+        font-size: 1.2em;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-body {
+        background-color: #fff0f5;
+        padding: 20px;
+    }
+
+    .card-text {
+        color: #ff69b4;
+    }
+
+    .card-header4 {
+        background-color: #ff69b4;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .btn-text-color {
+        color: white;
+    }
+
+    .container2 {
+        width: 50rem;
+    }
+
+    .cont {
+        color: deeppink;
+        font-size: 2em;
+    }
+
+    .video-bg {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        max-width: 300%;
+        max-height: 300%;
+        z-index: -1;
+        opacity: 0; /* Adjust the opacity as needed */
+    }
+
+    /* Card container styling */
+    .container2 {
+        background-color:pink;
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .card-custom {
+        background-color: pink;;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 1000px;
+    }
+
+    .card-header3 {
+        background-color: hotpink;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .user-link {
+        color: white;
+        font-weight: bold;
+    }
+
+        .user-link:hover {
+            color: #dfe6e9;
+            text-decoration: underline;
+        }
+
+    .post-date {
+        color: #dfe6e9;
+        font-size: 0.9em;
+    }
+
+    .card-body {
+        background-color:pink;
+        padding: 20px;
+    }
+
+    .card-text {
+        margin-bottom: 20px;
+        color: #4a5568;
+    }
+
+    .btn-primary {
+        background-color: hotpink;
+        border: none;
+        border-radius: 30px;
+        padding: 10px 20px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: deeppink;
+        }
+
+    .bi-eye-fill {
+        margin-right: 5px;
+    }
+
+    h4{
+        font-style: bold;
+        background-color:hotpink;
+        border: 2px solid deeppink;
+        border-radius: 20px;
+        font-size:18px;
+        text-align: center;
+        height:40px;  
+    }
+</style>
+
+<div class="jumbotron d-flex justify-content-end flex-row mt-4">
+    <div class="cont">
+        <a href="/Posts/New"><i class="bi bi-plus-circle-fill"></i></a>
+    </div>
+</div>
+
+@if (ViewBag.existaprofil == 0)
+{
+    <div class="text-bg-blue p-4 rounded-3">
+        <h1 class="fontbun1 text-center">Bun venit pe noua ta platformă preferată!</h1>
+    </div>
+    <br>
+    <div class="d-flex flex-column align-items-center">
+        <a class="btn-primary text-light text-decoration-none fontbun1 rounded-3 mt-2" href="/Profiles/New/">
+            <i class="bi bi-person-plus-fill me-2"></i>Creează profil
+        </a>
+    </div>
+}
+else
+{
+    @if (ViewBag.postariprieteni == null && ViewBag.Posts == null)
+    {
+        <h2 class="fontbun1 text-center mt-5">Momentan, nu avem nicio postare pentru tine.</h2>
+        <br />
+
+        <div class="text-bg-blue p-4 rounded-3">
+            <h3 class="fontbun1 text-center">Pentru început poți adăuga un prieten sau chiar mai mulți!</h3>
+        </div>
+        <br />
+        <div class="d-flex flex-row justify-content-around p-3">
+            <a class="btn-primary btn-text-color" href="/Groups/Index/">
+                <i class="bi bi-people-fill me-2"></i>Către grupuri
+            </a>
+            <a class="btn-primary btn-text-color" href="/Profiles/SearchBar/">
+                <i class="bi bi-search me-2"></i>Caută un profil
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="d-flex justify-content-center flex-row mt-3">
+            <h2 class="fontbun1" style="color: #ff69b4;">Postari noi</h2>
+        </div>
+        <br />
+    }
+}
+
+@if (ViewBag.Message != null)
+{
+    <h2 class="card-header4 p-3 rounded-3 mb-5">@ViewBag.Message</h2>
+}
+<br />
+
+@if (ViewBag.existapostariprieteni == 1)
+{
+    <h4 class="fontbun1 text-center">Postarile prietenilor tai</h4>
+    <br />
+    @foreach (var post in ViewBag.postariprieteni)
+    {
+        @if (post.GroupId == null)
+        {
+            <div class="container2 d-flex justify-content-center flex-row mt-3 fontbun1">
+                <div class="text-bg-blue mb-3 card-custom">
+                    <div class="card-header3 rounded-2 d-flex justify-content-between align-items-center">
+                        <a class="fw-bold text-decoration-none user-link" href="/Profiles/Show2/@post.UserId">
+                            @post.User.UserName
+                        </a>
+                        <span class="post-date">@post.PostDate.ToLongDateString()</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">@post.PostContent</p>
+                        <a class="btn btn-primary text-light d-flex justify-content-center align-items-center" href="/Posts/Show/@post.PostId">
+                            <i class="bi bi-eye-fill me-2"></i>Afisare postare
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        }
+    }
+    <br />
+}
+
+@if (ViewBag.existapostariingrup == 1)
+{
+    <h4 class="fontbun1 text-center">Postari din grupurile tale</h4>
+    <br />
+    @foreach (var post in ViewBag.Posts)
+    {
+        @if (post.Group != null)
+        {
+            <div class="container2 d-flex justify-content-center flex-row mt-3 fontbun1">
+                <div class="text-bg-blue mb-3 card-custom">
+                    <div class="card-header3 rounded-2 d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <a class="fw-bold text-decoration-none user-link" href="/Profiles/Show2/@post.UserId">
+                                @post.User.UserName
+                            </a>
+                            <a class="text-decoration-none user-link ms-3" href="/Groups/Show/@post.GroupId">
+                                <i class="bi bi-people-fill"></i>
+                            </a>
+                        </div>
+                        <span class="post-date">@post.PostDate.ToLongDateString()</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">@post.PostContent</p>
+                        <a class="btn btn-primary text-light d-flex justify-content-center align-items-center" href="/Posts/Show/@post.PostId">
+                            <i class="bi bi-eye-fill me-2"></i>Afisare postare
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        }
+    }
+}

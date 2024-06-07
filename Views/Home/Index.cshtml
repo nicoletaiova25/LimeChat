@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    body {
+        background: url('/images/template.png') no-repeat center center fixed;
+        background-size: cover;
+        color: black; /* Adjust text color for visibility */
+    }
+
+    .card {
+        background-color: #ffeff4; /* Semi-transparent background for readability */
+        color: black;
+    }
+
+    .text-primary {
+        color: black; /* Adjusting primary color for better visibility */
+    }
+
+    .btn-primary {
+        background-color: deeppink;
+        color:black;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #ffeff4;
+        }
+
+    .video-bg {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        max-width: 300%;
+        max-height: 300%;
+        z-index: -1;
+        opacity: 0; /* Adjust the opacity as needed */
+    }
+</style>
+
+<div class="text-center">
+    <h1 class="font-weight-bold display-4" style="color: deeppink;">LimeChat</h1>
+</div>
+@foreach (var post in ViewBag.Posts)
+{
+    <div class="d-flex justify-content-center mt-3">
+        <div class="card mb-3" style="width: 45rem;">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span class="fw-bold text-primary">Anonim</span>
+                <span>@post.PostDate.ToLongDateString()</span>
+            </div>
+            <div class="card-body">
+                <p class="card-text">@post.PostContent</p>
+                <a class="btn btn-primary text-light d-flex justify-content-center" href="/Posts/Show/@post.PostId">Afisare postare</a>
+            </div>
+        </div>
+    </div>
+}

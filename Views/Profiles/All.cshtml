@@ -1,0 +1,72 @@
+﻿@model LimeChat.Models.Profile
+@{
+    ViewBag.Title = "Lista de prieteni";
+}
+
+<style>
+    body {
+        background: url('/images/template.png') no-repeat center center fixed;
+        background-size: cover;
+        color: white; /* Adjust text color for visibility */
+    }
+
+    .video-bg {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        max-width: 300%;
+        max-height: 300%;
+        z-index: -1;
+        opacity: 0; /* Adjust the opacity as needed */
+    }
+
+    /* Stilizare pentru text */
+    .fontbun1 {
+        color: black; /* Font negru */
+    }
+
+    /* Stilizare pentru butonul de ștergere */
+    .btn-danger {
+        background-color: #ff69b4; /* Culoare roz */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 16px;
+    }
+
+        .btn-danger:hover {
+            background-color: #ff1493; /* Roz mai intens */
+        }
+
+    /* Stilizare pentru containerul prietenilor */
+    .friend-container {
+        background-color: rgba(255, 255, 255, 0.8); /* Fundal alb semi-transparent */
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .friend-container h2 {
+            margin: 0;
+        }
+</style>
+
+<h2 class="fontbun1 culoarebuna">Afisare Prietenii</h2>
+@foreach(var pr in ViewBag.Prietenie)
+{
+    <div class=" d-flex marg flex-row justify-content-between">
+        <h2 class="row m-3 pad d-flex fontbun1 justify-content-between position-relative">♡ @pr.ProfileName</h2>
+    <form method="post" action="/Profiles/DeleteFriendship/@pr.UserId">
+
+            <button class="btn m-3  d-flex justify-content-between position-relative row culoarebuton3 btn-danger" type="submit"><i class="bi bi-trash3"></i></button>
+
+    </form>
+    </div>
+    <br />
+}

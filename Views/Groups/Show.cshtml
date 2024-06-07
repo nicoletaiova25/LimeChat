@@ -1,0 +1,277 @@
+﻿@model LimeChat.Models.Group
+@{
+    ViewBag.Title = "Afisare grup";
+}
+
+<style>
+    .video-bg {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        max-width: 300%;
+        max-height: 300%;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    body {
+        background: url('/images/template.png') no-repeat center center fixed;
+        background-size: cover;
+        color: black;
+    }
+
+    .bg-pink {
+        background-color: pink;
+    }
+
+    .bg-lightpink {
+        background-color: lightpink;
+    }
+
+    .border-pink {
+        border-color: pink;
+    }
+
+    .btn-pink {
+        background-color: pink;
+        border-color: pink;
+        color: black;
+    }
+
+    
+
+    /* Adăugăm fundal colorat și border pentru card-uri */
+    .card3 {
+        background-color: rgba(255, 105, 180, 0.2); /* Roz deschis cu opacitate */
+        border: 2px solid pink; /* Border roz */
+        border-radius: 10px; /* Margini rotunjite */
+        padding: 20px; /* Spațiere în interior */
+        margin-bottom: 10px; /* Spațiere între card-uri */
+    }
+
+    /* Stilizare pentru butoane */
+    .culoarebuton {
+        background-color: #ff69b4; /* Roz aprins */
+        color: black;
+        border: 2px solid #ff69b4;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    /* Stilizare pentru butoane de editare și ștergere */
+    .culoarebuton3 {
+        background-color: #ff69b4; /* Roz aprins */
+        color: black;
+        border: 2px solid #ff69b4;
+        border-radius: 5px;
+        padding: 8px 16px;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    /* Adăugăm opacitate pentru containerul postării */
+    .container2 {
+        background-color: lightpink; /* Opacitate mai mică */
+        opacity: 1;
+        border: 3px solid pink; /* Border roz */
+        border-radius: 5px; /* Margini rotunjite */
+        padding: 15px; /* Spațiere în interior */
+        margin-bottom: 5px; /* Spațiere între postări */
+        margin-left:35px;
+        width:1000px;
+    }
+    .card-body{
+        background-color: pink;
+        opacity:0.8;
+        border:2px solid hotpink;
+    }
+
+    h2{
+        display:block;
+    }
+  
+</style>
+
+
+
+@* Afisarea unei grup *@
+@if (ViewBag.Message != null)
+{
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+<br />
+
+<div class="d-flex culoarebuton flex-row justify-content-between p-3 border-1 border-top">
+    <a class="btn culoaresus fontbun1 d-flex justify-content-start w-20 h-25" href="/Groups/Members/@Model.GroupId">Membri</a>
+
+    <div class="container d-flex justify-content-between">
+    </div>
+    @if (ViewBag.EsteInGrup == 0)
+    {
+        <a class="btn culoaresus fontbun1 d-flex justify-content-end w-20 h-25" href="/Groups/Join/@Model.GroupId">Join</a>
+    }
+    @if (ViewBag.EsteInGrup == 1 && Model.GroupAdminId != ViewBag.UserCurent)
+    {
+        <a class="btn culoaresus fontbun1 d-flex justify-content-end  w-20 h-25" href="/Groups/Leave/@Model.GroupId">Paraseste</a>
+    }
+</div>
+
+
+
+<div class="card3">
+
+    <div class="card2">
+        <div class="card-header5">
+
+            <div class="d-flex justify-content-end ">
+
+                <span class="d-flex justify-content-end culoarebuna fontbun1">@Model.GroupDate.ToLongDateString()</span>
+
+            </div>
+
+            <div class="d-block fw-bold fontbun1 culoarebuna"><h2>@Model.GroupName</h2></div>
+            <div class=" fontbun1 culoarebuna card-subtitle d-block mb-2 text-muted center-block"><h6>@Model.Description</h6></div>
+
+
+
+        </div>
+
+        @if (ViewBag.AfisareButoane == true && Model.GroupAdminId == ViewBag.UserCurent || ViewBag.EsteAdmin)
+        {
+            <div class="d-flex flex-row justify-content-between p-3 border-1 border-top">
+
+                <a class="btn culoarebuton3" href="/Groups/Edit/@Model.GroupId">Editeaza grupul</a>
+
+                <form method="post" action="/Groups/Delete/@Model.GroupId">
+
+                    <button class="btn culoarebuton3" type="submit">Sterge grupul</button>
+
+                </form>
+
+            </div>
+        }
+
+    </div>
+
+    @* Afisare postare impreuna cu butoanele de editare si stergere *@
+    @if (ViewBag.EsteInGrup == 1)
+    {
+        @foreach (var post in Model.Posts)
+        {
+
+            <div class="container2 d-flex justify-content-center flex-row mt-3 fontbun1">
+                <div class=" text-bg-blue mb-3" style="width: 45rem;">
+                    <div class="card-header3 row rounded-2">
+
+                        <strong><i class="bi bi-person"></i>@post.User.UserName</strong>
+
+
+                        <div class="container d-inline">
+                        </div>
+
+                        <div class="container d-inline">
+                        </div>
+                        <div class="container d-inline">
+                        </div>
+                        <div class="container d-inline">
+                        </div>
+
+                        <div class="container d-inline">
+                        </div>
+
+                        <div class="container d-inline">
+                        </div>
+
+                        <div class="container d-inline">
+                        </div>
+
+                        <div class="container d-inline">
+                        </div>
+
+                        <div class="container d-inline">
+                        </div>
+
+                        <div class="container d-inline">
+                        </div>
+
+                        <div class="container d-inline">
+                        </div>
+
+                        <div class="container d-inline">
+                        </div>
+
+                        
+                        
+                        <div class="container d-inline">
+                        </div>
+
+                        <span class="col-md-4">@post.PostDate.ToLongDateString()</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">@post.PostContent</p>
+
+                        <a class="btn culoaresus d-flex justify-content-center text-light" href="/Posts/Show/@post.PostId">Afisare postare</a>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+        }
+
+
+    }
+
+
+    <br />
+
+ 
+
+
+    @* Afisarea formularului in care se poate adauga o postare *@
+    @if (ViewBag.EsteInGrup == 1)
+    {
+        <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-2"></div>
+
+            <div class="col-md-8">
+
+                <div class="card">
+
+                    <form method="post" action="/Groups/Show/@Model.GroupId">
+
+                        <div class="card-body">
+
+                            <input type="hidden" name="GroupId" value="@Model.GroupId" />
+
+                            <label>Continut postare</label>
+                            <br />
+
+                            <textarea class="form-control" name="PostContent"></textarea>
+
+                            @Html.ValidationMessage("PostContent","", new { @class = "text-danger"})
+
+                            <br /><br />
+
+                            <button class="btn culoarebuton3 " type="submit">Adauga postarea</button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-2"></div>
+
+        </div>
+    
+
+    </div>
+    }

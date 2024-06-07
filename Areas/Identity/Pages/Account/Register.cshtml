@@ -1,0 +1,104 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+    body {
+        background: url('/images/template.png') no-repeat center center fixed;
+        background-size: cover;
+        color: white; /* Adjust text color for visibility */
+    }
+
+    .card {
+        background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent background for readability */
+        color: white;
+    }
+
+    .btn-primary {
+        background-color: deeppink;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: lightpink;
+        }
+
+    .form-floating {
+        margin-bottom: 1rem;
+    }
+
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: none;
+    }
+
+        .form-control::placeholder {
+            color: #ccc;
+        }
+
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: none;
+        }
+
+    label {
+        color: #ccc;
+    }
+
+    .text-danger {
+        color: #ff6b6b;
+    }
+
+    .video-bg {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        max-width: 300%;
+        max-height: 300%;
+        z-index: -1;
+        opacity: 0; /* Adjust the opacity as needed */
+    }
+
+    .text-primary {
+        --bs-text-opacity: 1;
+        color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+    }
+</style>
+
+<div class="text-center">
+    <h1 class="font-weight-bold display-4" style="color: deeppink;">@ViewData["Title"]</h1>
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+    <div class="card p-4" style="width: 25rem;">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="Email" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                <label asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirm Password" />
+                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

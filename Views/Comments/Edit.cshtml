@@ -1,0 +1,51 @@
+﻿@model LimeChat.Models.Comment
+<style>
+    .video-bg {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        max-width: 300%;
+        max-height: 300%;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    body {
+        background: url('/images/template.png') no-repeat center center fixed;
+        background-size: cover;
+        color: black;
+    }
+
+    <h2{
+    display: block;
+    }
+
+</style>
+
+@{
+    ViewBag.Title = "Edit comment";
+}
+
+<h2 class="fontbun1 culoarebuna">Editare comentariu</h2>
+<br />
+
+
+@using (Html.BeginForm(controllerName: "Comments", actionName: "Edit",
+      method: FormMethod.Post, routeValues: new { id = Model.CommentId }))
+
+{
+    @Html.Label("CommentContent", "Continut comentariu",new { @class = "fontbun1" })
+
+    <br />
+
+    @Html.Editor("CommentContent", new { htmlAttributes = new { @class = "form-control fontbun1" } })
+    <br />
+
+    @Html.ValidationMessage("CommentContent", null, new { @class = "text-danger fontbun1" })
+
+    <br />
+    <br />
+    
+    <button class="btn  culoaresus" type="submit">Editeaza comentariul</button>
+}
+

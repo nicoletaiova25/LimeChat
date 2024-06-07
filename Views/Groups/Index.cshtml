@@ -1,0 +1,76 @@
+﻿@model LimeChat.Models.Group
+
+@{
+    ViewBag.Title = "Afisare grupuri";
+}
+
+
+<div class="card-header4 ">
+    <h2 class="culoarebuna fontbun11 flex-row mt-3">Grupuri</h2>
+    <a class="btn culoarebuton5 " href="/Groups/New">Adauga un grup</a>
+</div>
+
+<br />
+@if (ViewBag.Message != null)
+{
+    <h2 class="card-header4 p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+<br />
+<div class="containergrup">
+    @foreach (LimeChat.Models.Group group in ViewBag.Groups)
+    {
+
+        <div class="containergrup-border d-flex cellgrup justify-content-center flex-row mt-3">
+            <div class="card mb-3 border border-pink rounded-3" style="width: 75rem;">
+                <div class="card-header2 row bg-pink">
+                    <div class="fw-bold fontbun1 col-md-8">@group.GroupName</div>
+                    <span class=" col-md-4">@group.GroupDate.ToLongDateString()</span>
+                </div>
+                <div class="card-body bg-lightpink">
+                    <p class="card-text fontbun1" style="color: black">@group.Description</p>
+
+                    <a class="btn culoaresus d-flex justify-content-center " href="/Groups/Show/@group.GroupId">Afisare postari grup</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .bg-pink {
+        background-color: pink;
+    }
+
+    .bg-lightpink {
+        background-color: lightpink;
+    }
+
+    .border-pink {
+        border-color: pink;
+    }
+
+    h2 {
+        display: block;
+    }
+
+    .containergrup-border{
+        border: 3px solid hotpink;
+    }
+
+    .video-bg {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        max-width: 300%;
+        max-height: 300%;
+        z-index: -1;
+        opacity: 0; /* Adjust the opacity as needed */
+    }
+
+    body {
+        background: url('/images/template.png') no-repeat center center fixed;
+        background-size: cover;
+        color: white; /* Adjust text color for visibility */
+    }
+</style>
