@@ -1,4 +1,5 @@
 # LimeChat Social-App 🍋
+
 LimeChat is a vibrant and user-friendly social networking application designed to enhance online communication and foster community building. The app is tailored to provide a seamless chatting experience, enabling users to connect with friends, family, and new acquaintances through various interactive features.
 
 <div align="center">  
@@ -15,7 +16,7 @@ LimeChat is a dynamic social networking application built using Entity Framework
                       
 </details>
 
-  <details>
+<details>
   <summary> 
      <h3> LimeChat - Application Features 🍋 </h3>
   </summary>
@@ -23,58 +24,60 @@ LimeChat is a dynamic social networking application built using Entity Framework
 ### User Roles:
 
 ### Logged-Out Users:
-        Can view public posts on the homepage with anonymized usernames.
-        Cannot interact with posts or access additional features.
-        
+  - 👀 View public posts on the homepage with anonymized usernames.
+  - 🚫 Cannot interact with posts or access additional features.
+
 <img width="500" alt="image" src="https://github.com/anacimpeanu/LimeChat/assets/115561036/a455aaa5-1d63-4aea-a6f4-1e7ba1f9f64c">
         
 ### Logged-In Users:
-        Register and Login: Create an account and log in to access full features.
-        Profile Management: Create and customize their profiles with personal information, photos, and bios.
-        Friendship Features: Add friends, view friends' lists, and interact with friends' posts.
-        Groups: Join existing groups or create new ones, post updates, and interact within group discussions.
-        Posting and Interaction: Share posts, add comments, like or share posts, and edit or delete their own posts and comments.
+  - 📝 **Register and Login:** Create an account and log in to access full features.
+  - 🖼 **Profile Management:** Create and customize their profiles with personal information, and bios.
+  - 👫 **Friendship Features:** Add friends, view friends' lists, and interact with friends' posts and also see a list of friends requests.
+  - 🏘 **Groups:** Join existing groups or create new ones, post updates, and interact within group discussions.
+  - 📬 **Posting and Interaction:** Create posts, add comments, and edit or delete their own posts and comments.
+
 <img width="500" alt="image" src="https://github.com/anacimpeanu/LimeChat/assets/115561036/a455aaa5-1d63-4aea-a6f4-1e7ba1f9f64c">
-Admin Users:
-Manage Content: Delete any group or post, ensuring adherence to community guidelines.
-User Management: Oversee user activities, manage user roles, and ensure community standards are maintained.
+        
+### Admin Users:
+  - ⚖️ **Manage Content:** Delete any group or post, ensuring adherence to community guidelines.
+  - 👥 **User Management:** Oversee user activities, manage user roles, and ensure community standards are maintained.
 
 ### User Authentication:
-      🍤 Robust user authentication system allowing users to 
-      securely log in or sign up for an account.
+  - 🔒 Robust user authentication system allowing users to securely log in or sign up for an account.
       
 ### Moderator Environment:
-
-      🍤 A dedicated platform for moderators to manage various
-      aspects of the application, including adding or 
-      removing restaurants and products.
-
-### Order Placement:
-      🍤 Seamless order placement functionality, enabling users
-      to effortlessly select items and place orders with 
-      just a few clicks.
-      
-
-
-
-
-
-
+  - 🎛 **Moderator Platform:** A dedicated platform for moderators to manage various aspects of the application, including adding or removing groups, comments.
 
 
 </details>
-  </summary>
-  
-  ### TEAM 
-  
-  [Ana - Maria Cimpeanu](https://github.com/anacimpeanu)
-  
-  [Nicoleta Carmen Iova](https://github.com/nicoletaiova25)
-  
-  [Artemis Constantina Tismanaru ( Tina )](https://github.com/ArtemisTismanaru)
-  
 
+---
 
+### TEAM 
 
-### 📽 Video : [LIME CHAT APP 🧁]
-### 🖥 Code : [ The Code 🧁 ]
+- [Ana - Maria Cimpeanu](https://github.com/anacimpeanu)
+- [Nicoleta Carmen Iova](https://github.com/nicoletaiova25)
+- [Artemis Constantina Tismanaru ( Tina )](https://github.com/ArtemisTismanaru)
+
+---
+
+## Features at a Glance 🌟
+
+LimeChat offers a rich set of features that make it a standout social networking app. Here’s what you can do:
+
+- 🌐 **View Public Posts:** Explore anonymous posts on the homepage if you're not logged in.
+- 📝 **Register & Log In:** Create an account to unlock all the features.
+- 🖼 **Profile Creation:** Set up and personalize your profile with photos, bios, and more.
+- 🔍 **Search Users:** Find and connect with other users easily.
+- 👫 **Friend Requests:** Send and accept friend requests to build your network.
+- ✍️ **Create Posts:** Share your thoughts, updates, and moments with your friends.
+- 🏘 **Join Groups:** Create or join groups to share posts and interact within communities.
+- 💬 **Group Posts:** Post updates and participate in group discussions.
+- 💬 **Comment:** Leave comments on posts, and edit or delete them as needed.
+- 🖋 **Edit Profile:** Keep your profile information up-to-date with ease.
+- 🎉 **Group Membership:** View and interact with group members.
+
+With LimeChat, connecting and engaging with your community has never been more fun and intuitive! 🍋
+
+### 📽 Video: [LIME CHAT APP 🧁]
+### 🖥 Code: [The Code 🧁]
